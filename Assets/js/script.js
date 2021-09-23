@@ -7,13 +7,13 @@ function generatePassword() {
 
   //define array for each character type
 
-  var useLowerCase = [];
+  var useLowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
-  var useUpperCase = [];
+  var useUpperCase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 
-  var useNumbers = [];
+  var useNumbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-  var useSpecial = [];
+  var useSpecial = ["!", "@", "#", "$", "%", "^", "&", "*", "+", "_", "-", "~"];
 
   //define charOptions array
 
@@ -31,7 +31,7 @@ function generatePassword() {
     return;
   }
 
-  //if use input is correct, continue with prompts: - TAKE THESE OUT OF HERE AND SEPARATE THEM TOGETHER WITH concat
+  //if use input is correct, continue with prompts and add char types to big array
 
   //add useLowerCase IF user confirms
   if (confirm("Would you like to use lower case letters?")) {
@@ -43,40 +43,35 @@ function generatePassword() {
     charOptions = charOptions.concat(useUpperCase);
   }
 
-  // choose numbers
-  var useNumbers = confirm("Would you like to use numbers?");
+  // add to big array if user choose numbers
+  if (confirm("Would you like to use numbers?")) {
+    charOptions = charOptions.concat(useNumbers);
+  };
 
-  // choose special
-  var useSpecial = confirm("Would you like to use special characters?");
-
-  // if user input is false, then alert and prompt to do again:
-
-  //Generate Password
-
-  // HOW TO GET ONE OF EACH ARRAY for characters
-
-  //add userSelectedChar to charOptions
-
-  //add other options IF user confirms
+  // add to big array if user choose special
+  if (confirm("Would you like to use special characters?")) {
+    charOptions = charOptions.concat(useSpecial);
+  };
 
   //if 0 items in charOptions array is empty, alert "You must pick at least one character set"
 
   if (charOptions.length === 0) {
     alert("You must choose at least one character type!");
-    return generatePassword();
-
-    //return to start of function
+//return to start of function
+    return;
   }
 
-  //if charOptions is not empty, then
+    //Generate Password - if charOptions is not empty, then
 
-  //pick random item from foodOptions - ONE OF EACH
+  //pick random item from charOptions and put it in consecutive digits up to length provided by user:
 
-  var pick = charOptions[Math.floor(Math.random() * charOptions.length)];
+var length = passLength;
+for (var i = 0; i < length; ++i) {
+  password += charOptions[Math.floor(Math.random() * charOptions.length)];
+}
 
-  //display random pick
-
-  var password = "password1234";
+  // This only created ONE character:
+  // var password = charOptions[Math.floor(Math.random() * charOptions.length)];
 
   return password;
 }
@@ -91,3 +86,5 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
+// HOW TO GET ONE OF EACH ARRAY for characters - DO THIS LAST
