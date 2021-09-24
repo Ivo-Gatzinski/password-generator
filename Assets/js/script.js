@@ -7,9 +7,63 @@ function generatePassword() {
 
   //define array for each character type
 
-  var useLowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+  var useLowerCase = [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h",
+    "i",
+    "j",
+    "k",
+    "l",
+    "m",
+    "n",
+    "o",
+    "p",
+    "q",
+    "r",
+    "s",
+    "t",
+    "u",
+    "v",
+    "w",
+    "x",
+    "y",
+    "z",
+  ];
 
-  var useUpperCase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+  var useUpperCase = [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "M",
+    "N",
+    "O",
+    "P",
+    "Q",
+    "R",
+    "S",
+    "T",
+    "U",
+    "V",
+    "W",
+    "X",
+    "Y",
+    "Z",
+  ];
 
   var useNumbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
@@ -46,33 +100,33 @@ function generatePassword() {
   // add to big array if user choose numbers
   if (confirm("Would you like to use numbers?")) {
     charOptions = charOptions.concat(useNumbers);
-  };
+  }
 
   // add to big array if user choose special
   if (confirm("Would you like to use special characters?")) {
     charOptions = charOptions.concat(useSpecial);
-  };
+  }
 
   //if 0 items in charOptions array is empty, alert "You must pick at least one character set"
 
   if (charOptions.length === 0) {
     alert("You must choose at least one character type!");
-//return to start of function
+    //return to start of function
     return;
   }
 
-    //Generate Password - if charOptions is not empty, then
+  //Generate Password - if charOptions is not empty, then
+ 
+  //initialize container for password AS A String
+  var password = "";
 
   //pick random item from charOptions and put it in consecutive digits up to length provided by user:
+ var length = passLength;
+  for (var i = 0; i < length; ++i) {
+    password += charOptions[Math.floor(Math.random() * charOptions.length)];
+  }
 
-var length = passLength;
-for (var i = 0; i < length; ++i) {
-  password += charOptions[Math.floor(Math.random() * charOptions.length)];
-}
-
-  // This only created ONE character:
-  // var password = charOptions[Math.floor(Math.random() * charOptions.length)];
-
+  var password = password;
   return password;
 }
 
@@ -86,5 +140,3 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
-// HOW TO GET ONE OF EACH ARRAY for characters - DO THIS LAST
