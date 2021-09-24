@@ -82,7 +82,8 @@ function generatePassword() {
 
   if (passLength < 8 || passLength > 128) {
     alert("Your password must be between 8 and 128 characters.");
-    return;
+    var password = "password1234";
+    return password;
   }
 
   //if use input is correct, continue with prompts and add char types to big array
